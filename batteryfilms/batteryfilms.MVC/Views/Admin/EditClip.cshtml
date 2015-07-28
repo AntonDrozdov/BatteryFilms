@@ -1,32 +1,28 @@
-﻿@model batteryfilms.Domain.EFContexts.EFCF.Clip
+﻿@model batteryfilms.MVC.Models.EditClipModel
 
 @{
-    ViewBag.Title = "EditClip: " + @Model.Title;
+    ViewBag.Title = "EditClip: " + @Model.clip.Title;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit: @Model.Title</h1>
+<h1>Edit: @Model.clip.Title</h1>
 @using (Html.BeginForm("EditClip", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.EditorForModel()
+    Html.RenderPartial("EditClip_EditForm", Model.clip);
     <div class="editor-label">Clip's Categories</div>
-    <ul>
-        @foreach (batteryfilms.Domain.EFContexts.EFCF.Category cat in @Model.Categories)
-        {
-            <li>@cat.Title</li>
-        }
-    </ul>
+    
+    @Html.ListBoxFor(m=>m.AllCategories, Model.AllCategories);
 
 
     <div class="editor-label">Image</div>
     <div class="editor-field">
-    @if (Model.ImageData == null)
+    @if (Model.clip.ImageData == null)
     {
         @:None
     }
     else
     {
-        <img width="150" height="150" src="@Url.Action("GetImage", "Product", new { Model.Id})" />
+        <img width="150" height="150" src="@Url.Action("GetImage", "Product", new { Model.clip.Id})" />
     }
         <div>
             Upload new image:

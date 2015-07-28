@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using batteryfilms.Domain.Abstract;
 
+using batteryfilms.Domain.Abstract;
 using batteryfilms.Domain.EFContexts.EFCF;
+using batteryfilms.MVC.Models;
 
 namespace batteryfilms.MVC.Controllers
 {
@@ -21,13 +22,32 @@ namespace batteryfilms.MVC.Controllers
         //редактирование списка клипов
         public ViewResult ClipEditor()
         {
-            //return View();
             return View(repository.Clips.OrderBy(clip=>clip.Title));
         }
         public ViewResult EditClip(int Id)
         {
-            Clip clip = repository.Clips.FirstOrDefault(clipitem => clipitem.Id == Id);
-            return View(clip);
+            EditClipModel clipToEdit = new EditClipModel();
+            //get clip from db to edit
+            clipToEdit.clip = repository.Clips.FirstOrDefault(clipitem => clipitem.Id == Id); ;
+
+            //get all categories to choose
+            clipToEdit.AllCategories = from cat in repository.Categories.Distinct().ToList() select new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() };
+            foreach (var clipcat in clipToEdit.clip.Categories) 
+            {
+                foreach (var cat in clipToEdit.AllCategories)
+                {
+                    if (cat.Value == clipcat.Id.ToString()) 
+                    { 
+                        cat.Selected = true; 
+                    }       
+                }
+            }
+            /*
+            clipToEdit.AllCategories.ToList().ForEach(
+                item => item.Selected = clipToEdit.clip.Categories.ToList().Exists(clipcat => clipcat.Id.ToString() == item.Value)                
+            );*/
+
+            return View(clipToEdit);
         }
         [HttpPost]
         public ActionResult EditClip(Clip clip, HttpPostedFileBase image)

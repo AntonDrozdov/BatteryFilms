@@ -148,6 +148,7 @@
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\ClipsListViewModel.cs" />
+    <Compile Include="Models\EditClipModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Views\Admin\PromoEditor.cshtml" />
     <Content Include="Views\Admin\ArticleEditor.cshtml" />
     <Content Include="Views\Admin\ClipEditor.cshtml" />
+    <Content Include="Views\Shared\EditClip_EditForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
