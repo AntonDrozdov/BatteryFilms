@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EFDataLayer_MF.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EFDataLayer_MFStoreContainer">
+    <EntitySet Name="Clips" EntityType="EFDataLayer_MF.Store.Clips" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="EFDataLayer_MF.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Fotoes" EntityType="EFDataLayer_MF.Store.Fotoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClipCategory" EntityType="EFDataLayer_MF.Store.ClipCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FotoCategory" EntityType="EFDataLayer_MF.Store.FotoCategory" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ClipCategory_Clip" Association="EFDataLayer_MF.Store.FK_ClipCategory_Clip">
+      <End Role="Clip" EntitySet="Clips" />
+      <End Role="ClipCategory" EntitySet="ClipCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClipCategory_Category" Association="EFDataLayer_MF.Store.FK_ClipCategory_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="ClipCategory" EntitySet="ClipCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FotoCategory_Foto" Association="EFDataLayer_MF.Store.FK_FotoCategory_Foto">
+      <End Role="Foto" EntitySet="Fotoes" />
+      <End Role="FotoCategory" EntitySet="FotoCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FotoCategory_Category" Association="EFDataLayer_MF.Store.FK_FotoCategory_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="FotoCategory" EntitySet="FotoCategory" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clips">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsFotoCategory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsClipCategory" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fotoes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClipCategory">
+    <Key>
+      <PropertyRef Name="Clip_Id" />
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Clip_Id" Type="int" Nullable="false" />
+    <Property Name="Category_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FotoCategory">
+    <Key>
+      <PropertyRef Name="Foto_Id" />
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Foto_Id" Type="int" Nullable="false" />
+    <Property Name="Category_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ClipCategory_Clip">
+    <End Role="Clip" Type="EFDataLayer_MF.Store.Clips" Multiplicity="1" />
+    <End Role="ClipCategory" Type="EFDataLayer_MF.Store.ClipCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clip">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClipCategory">
+        <PropertyRef Name="Clip_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClipCategory_Category">
+    <End Role="ClipCategory" Type="EFDataLayer_MF.Store.ClipCategory" Multiplicity="*" />
+    <End Role="Category" Type="EFDataLayer_MF.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClipCategory">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FotoCategory_Foto">
+    <End Role="Foto" Type="EFDataLayer_MF.Store.Fotoes" Multiplicity="1" />
+    <End Role="FotoCategory" Type="EFDataLayer_MF.Store.FotoCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FotoCategory">
+        <PropertyRef Name="Foto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FotoCategory_Category">
+    <End Role="FotoCategory" Type="EFDataLayer_MF.Store.FotoCategory" Multiplicity="*" />
+    <End Role="Category" Type="EFDataLayer_MF.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FotoCategory">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EF.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EFStoreContainer">
+    <EntitySet Name="ClipSet" EntityType="EF.Store.ClipSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategorySet" EntityType="EF.Store.CategorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClipCategory" EntityType="EF.Store.ClipCategory" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ClipCategory_Clip" Association="EF.Store.FK_ClipCategory_Clip">
+      <End Role="Clip" EntitySet="ClipSet" />
+      <End Role="ClipCategory" EntitySet="ClipCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClipCategory_Category" Association="EF.Store.FK_ClipCategory_Category">
+      <End Role="Category" EntitySet="CategorySet" />
+      <End Role="ClipCategory" EntitySet="ClipCategory" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ClipSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategorySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClipCategory">
+    <Key>
+      <PropertyRef Name="Clip_Id" />
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Clip_Id" Type="int" Nullable="false" />
+    <Property Name="Category_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ClipCategory_Clip">
+    <End Role="Clip" Type="EF.Store.ClipSet" Multiplicity="1" />
+    <End Role="ClipCategory" Type="EF.Store.ClipCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clip">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClipCategory">
+        <PropertyRef Name="Clip_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClipCategory_Category">
+    <End Role="ClipCategory" Type="EF.Store.ClipCategory" Multiplicity="*" />
+    <End Role="Category" Type="EF.Store.CategorySet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClipCategory">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

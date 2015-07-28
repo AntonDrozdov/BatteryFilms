@@ -1,0 +1,26 @@
+﻿<div id="header">
+    <div class="title">
+        <a href ="/">BATTERYFILMS</a><a href="/Admin">Перейти в Админку</a>  
+    </div>
+           
+    <div class="menu">
+        <table>
+            <tr>
+                <td>@Html.RouteLink("MAIN",
+                                new { controller = "Start", Action = "MainPage"},
+                                new { @class = ViewBag.CurrentPage  == "Main" ? "selected" : null })</td>
+                <td>@Html.RouteLink("GALLERY",
+                                new { controller = "Gallery", Action = "List", category = "ALL", page = 1  },
+                                new { @class = ViewBag.CurrentPage == "Gallery" ? "selected" : null })</td>
+                <td>@Html.RouteLink("PRICE",
+                                new { controller = "Price", Action = "Price"},
+                                new { @class = ViewBag.CurrentPage == "Price" ? "selected" : null })</td>
+                <td>@Html.RouteLink("CONTACTS",
+                                new { controller = "Contacts", Action = "Contacts"},
+                                new { @class = ViewBag.CurrentPage == "Contacts" ? "selected" : null })</td>
+            </tr>
+        </table>
+ 
+    </div>
+    
+</div>

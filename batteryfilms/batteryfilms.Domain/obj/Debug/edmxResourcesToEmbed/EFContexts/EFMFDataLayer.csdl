@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EFMFDataLayer" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="EFMFDataLayerContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clips" EntityType="EFMFDataLayer.Clip" />
+    <EntitySet Name="Categories" EntityType="EFMFDataLayer.Category" />
+    <EntitySet Name="Fotoes" EntityType="EFMFDataLayer.Foto" />
+    <AssociationSet Name="ClipCategory" Association="EFMFDataLayer.ClipCategory">
+      <End Role="Clip" EntitySet="Clips" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="ClipCategory1" Association="EFMFDataLayer.ClipCategory1">
+      <End Role="Clip" EntitySet="Clips" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FotoCategory" Association="EFMFDataLayer.FotoCategory">
+      <End Role="Foto" EntitySet="Fotoes" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="EFMFDataLayer.ClipCategory" FromRole="Clip" ToRole="Category" />
+    <NavigationProperty Name="Category1" Relationship="EFMFDataLayer.ClipCategory1" FromRole="Clip" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" />
+    <Property Type="Boolean" Name="IsFotoCat" Nullable="false" />
+    <Property Type="Boolean" Name="IsClipCat" Nullable="false" />
+    <NavigationProperty Name="Clip" Relationship="EFMFDataLayer.ClipCategory" FromRole="Category" ToRole="Clip" />
+    <NavigationProperty Name="Clip1" Relationship="EFMFDataLayer.ClipCategory1" FromRole="Category" ToRole="Clip" />
+    <NavigationProperty Name="Foto" Relationship="EFMFDataLayer.FotoCategory" FromRole="Category" ToRole="Foto" />
+  </EntityType>
+  <EntityType Name="Foto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="EFMFDataLayer.FotoCategory" FromRole="Foto" ToRole="Category" />
+  </EntityType>
+  <Association Name="ClipCategory">
+    <End Type="EFMFDataLayer.Clip" Role="Clip" Multiplicity="*" />
+    <End Type="EFMFDataLayer.Category" Role="Category" Multiplicity="*" />
+  </Association>
+  <Association Name="ClipCategory1">
+    <End Type="EFMFDataLayer.Clip" Role="Clip" Multiplicity="*" />
+    <End Type="EFMFDataLayer.Category" Role="Category" Multiplicity="*" />
+  </Association>
+  <Association Name="FotoCategory">
+    <End Type="EFMFDataLayer.Foto" Role="Foto" Multiplicity="*" />
+    <End Type="EFMFDataLayer.Category" Role="Category" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+<span style ="font-size:30px;"> @Html.RouteLink("ALL",
+                                new { controller = "Gallery", Action = "List", category = "ALL", page = 1 },
+                                new { @class = ViewBag.Currentcategory == "ALL" ? "selected" : null })</span>
+
+
+@foreach (string category in Model)
+{
+    <!--<div class ="categorymenuitem">-->
+        @Html.RouteLink(category,
+                        new { controller = "Gallery", Action = "List", category = category, page = 1 },
+                        new { @class = category == ViewBag.Currentcategory ? "selected" : null })
+    <!--</div>   -->
+}
+

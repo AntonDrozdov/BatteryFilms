@@ -1,0 +1,29 @@
+﻿@model batteryfilms.MVC.Models.ClipsListViewModel
+
+
+@{
+    ViewBag.Title = "Clips";
+}
+
+
+<div id="content">
+    <table class ="clipstable">
+        <tr>
+            <td class ="categorymenu">
+                @{Html.RenderAction("VideoCategories", "VideoCategories");}
+            </td>
+            <td class ="clips">
+                <p>
+                @foreach (var clip in Model.Clips)
+                {
+                        Html.RenderPartial("ClipSummary", clip);
+                }
+                </p>
+
+                <div class ="pager">
+                        @Html.PageLinks(Model.paginginfo, x => Url.Action("List", new { page = x , category = Model.CurrentCategory}))
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

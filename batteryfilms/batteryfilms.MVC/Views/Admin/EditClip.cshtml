@@ -1,0 +1,39 @@
+﻿@model batteryfilms.Domain.EFContexts.EFCF.Clip
+
+@{
+    ViewBag.Title = "EditClip: " + @Model.Title;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit: @Model.Title</h1>
+@using (Html.BeginForm("EditClip", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel()
+    <div class="editor-label">Clip's Categories</div>
+    <ul>
+        @foreach (batteryfilms.Domain.EFContexts.EFCF.Category cat in @Model.Categories)
+        {
+            <li>@cat.Title</li>
+        }
+    </ul>
+
+
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+    @if (Model.ImageData == null)
+    {
+        @:None
+    }
+    else
+    {
+        <img width="150" height="150" src="@Url.Action("GetImage", "Product", new { Model.Id})" />
+    }
+        <div>
+            Upload new image:
+            <input type="file" name="Image" />
+        </div>
+    </div>  
+
+  <input type="submit" value="Save" />
+  @Html.ActionLink("Cancel and return to List", "ClipEditor")
+}

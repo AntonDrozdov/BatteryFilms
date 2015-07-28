@@ -1,0 +1,13 @@
+﻿@model batteryfilms.Domain.Entities.Clip
+<div class ="clip "> 
+    @if (Model.ImageData != null) 
+    {
+        <div style="float: left; margin-right: 20px">
+            <img width = "110" src="@Url.Action("GetClipImage", "Gallery", new { @Model.Id})" />
+        </div>
+    }
+
+    @Model.Title
+    <br />
+    <iframe src = '@Model.url' width = '260' height = '180' frameborder ='0' style ="margin:auto; "> </iframe>
+</div>        

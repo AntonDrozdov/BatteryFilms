@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EFMFBF" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="EFMFBFContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClipSet" EntityType="EFMFBF.Clip" />
+    <EntitySet Name="CategorySet" EntityType="EFMFBF.Category" />
+    <AssociationSet Name="ClipCategory" Association="EFMFBF.ClipCategory">
+      <End Role="Clip" EntitySet="ClipSet" />
+      <End Role="Category" EntitySet="CategorySet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" Unicode="true" MaxLength="100" />
+    <Property Name="Url" Type="String" Nullable="false" Unicode="true" MaxLength="700" />
+    <Property Name="Date" Type="DateTime" Nullable="false" DefaultValue="" />
+    <Property Name="Description" Type="String" Nullable="false" Unicode="true" MaxLength="Max" />
+    <NavigationProperty Name="Category" Relationship="EFMFBF.ClipCategory" FromRole="Clip" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" Unicode="true" MaxLength="500" />
+    <Property Name="Description" Type="String" Nullable="false" Unicode="true" MaxLength="Max" />
+    <NavigationProperty Name="Clip" Relationship="EFMFBF.ClipCategory" FromRole="Category" ToRole="Clip" />
+  </EntityType>
+  <Association Name="ClipCategory">
+    <End Type="EFMFBF.Clip" Role="Clip" Multiplicity="*" />
+    <End Type="EFMFBF.Category" Role="Category" Multiplicity="*" />
+  </Association>
+</Schema>

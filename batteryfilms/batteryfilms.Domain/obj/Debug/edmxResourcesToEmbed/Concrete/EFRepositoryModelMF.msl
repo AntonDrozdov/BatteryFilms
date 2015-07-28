@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EFRepositoryModelMFStoreContainer" CdmEntityContainer="EFRepositoryModelMFContainer">
+    <EntitySetMapping Name="Clips">
+      <EntityTypeMapping TypeName="IsTypeOf(EFRepositoryModelMF.Clip)">
+        <MappingFragment StoreEntitySet="Clips">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(EFRepositoryModelMF.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IsFotoCategory" ColumnName="IsFotoCategory" />
+          <ScalarProperty Name="IsClipCategory" ColumnName="IsClipCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fotoes">
+      <EntityTypeMapping TypeName="IsTypeOf(EFRepositoryModelMF.Foto)">
+        <MappingFragment StoreEntitySet="Fotoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClipCategory" TypeName="EFRepositoryModelMF.ClipCategory" StoreEntitySet="ClipCategory">
+      <EndProperty Name="Clip">
+        <ScalarProperty Name="Id" ColumnName="Clip_Id" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="Category_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FotoCategory" TypeName="EFRepositoryModelMF.FotoCategory" StoreEntitySet="FotoCategory">
+      <EndProperty Name="Foto">
+        <ScalarProperty Name="Id" ColumnName="Foto_Id" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="Category_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

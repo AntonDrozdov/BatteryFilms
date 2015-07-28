@@ -1,0 +1,24 @@
+﻿<div id="header">
+    <div class="title">
+        <a href ="/Admin">BATTERYFILMS: AdminPanel</a><a href="/Main">Вернуться на главную</a>
+    </div>
+       
+    <div class="menu">
+        <table>
+            <tr>
+                <td>@Html.RouteLink("CLIPEDITOR",
+                                new { controller = "Admin", Action = "ClipEditor"},
+                                new { @class = ViewBag.CurrentEditor  == "ClipEditor" ? "selected" : null })</td>
+                <td>@Html.RouteLink("FOTOEDITOR",
+                                new { controller = "Admin", Action = "FotoEditor"},
+                                new { @class = ViewBag.CurrentEditor == "FotoEditor" ? "selected" : null })</td>
+                <td>@Html.RouteLink("PROMOEDITOR",
+                                new { controller = "Admin", Action = "PromoEditor"},
+                                new { @class = ViewBag.CurrentEditor == "PromoEditor" ? "selected" : null })</td>
+                <td>@Html.RouteLink("ARTICLEEDITOR",
+                                new { controller = "Admin", Action = "ArticleEditor"},
+                                new { @class = ViewBag.CurrentEditor == "ArticleEditor" ? "selected" : null })</td>
+            </tr>
+        </table>
+    </div>
+</div>

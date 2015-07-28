@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batteryfilms.Domain", "batteryfilms.Domain\batteryfilms.Domain.csproj", "{948DCE25-0C99-4F89-A9F9-8DF5ECC0BDC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batteryfilms.MVC", "batteryfilms.MVC\batteryfilms.MVC.csproj", "{043BFD1E-0342-42B9-A3E9-82B0200EE9CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{948DCE25-0C99-4F89-A9F9-8DF5ECC0BDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{948DCE25-0C99-4F89-A9F9-8DF5ECC0BDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{948DCE25-0C99-4F89-A9F9-8DF5ECC0BDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{948DCE25-0C99-4F89-A9F9-8DF5ECC0BDC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043BFD1E-0342-42B9-A3E9-82B0200EE9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043BFD1E-0342-42B9-A3E9-82B0200EE9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043BFD1E-0342-42B9-A3E9-82B0200EE9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043BFD1E-0342-42B9-A3E9-82B0200EE9CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

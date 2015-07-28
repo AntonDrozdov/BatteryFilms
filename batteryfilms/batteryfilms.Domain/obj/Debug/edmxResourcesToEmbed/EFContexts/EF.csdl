@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EF" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="EFContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClipSet" EntityType="EF.Clip" />
+    <EntitySet Name="CategorySet" EntityType="EF.Category" />
+    <AssociationSet Name="ClipCategory" Association="EF.ClipCategory">
+      <End Role="Clip" EntitySet="ClipSet" />
+      <End Role="Category" EntitySet="CategorySet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="EF.ClipCategory" FromRole="Clip" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" />
+    <NavigationProperty Name="Clip" Relationship="EF.ClipCategory" FromRole="Category" ToRole="Clip" />
+  </EntityType>
+  <Association Name="ClipCategory">
+    <End Type="EF.Clip" Role="Clip" Multiplicity="*" />
+    <End Type="EF.Category" Role="Category" Multiplicity="*" />
+  </Association>
+</Schema>

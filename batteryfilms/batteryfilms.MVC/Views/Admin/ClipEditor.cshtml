@@ -1,0 +1,34 @@
+﻿@model IEnumerable<batteryfilms.Domain.EFContexts.EFCF.Clip>
+
+@{
+    ViewBag.Title = "ClipEditor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ClipEditor</h2>
+<table class="Grid">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@Html.ActionLink(item.Title, "EditClip", new { item.Id })</td>
+            <td>@item.Url</td>
+            <td>@item.Description</td>
+            <td>
+                @using (Html.BeginForm("Delete", "Admin"))
+                {
+                    @Html.Hidden("ProductID", item.Id)
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Add a new product", "CreateClip")</p>
