@@ -8,23 +8,35 @@
 <h1>Edit: @Model.clip.Title</h1>
 @using (Html.BeginForm("EditClip", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    Html.RenderPartial("EditClip_EditForm", Model.clip);
-    <div class="editor-label">Clip's Categories</div>
+    <!--COMMON DATA-->
+    <!--Html.RenderPartial("~/Views/Shared/EditClip/EditClip_EditForm.cshtml", Model.clip);-->
+    <div class="editor-field">@Html.Editor("clip.Id", Model.clip.Id)</div>
+
+    <div class="editor-label">Title</div>
+    <div class="editor-field">@Html.Editor("clip.Title", Model.clip.Title)</div>
     
-    @Html.ListBox("ClipCategories", Model.AllCategories);
+    <div class="editor-label">Description</div>
+    <div class="editor-field">@Html.Editor("clip.Description", Model.clip.Description)</div>
+    
+    <div class="editor-label">Url</div>
+    <div class="editor-field">@Html.Editor("clip.Url", Model.clip.Url)</div>
+        
 
+    <!--CATEGORIES-->
+    <!--Html.RenderPartial("~/Views/Shared/EditClip/EditClip_EditCategories.cshtml", Model.AllCategories);-->
+    <div class="editor-label">Categories</div>
     <table>
-        @foreach (var item in Model.AllCategories)
-        {
-            <tr>
-                <td>@Html.HiddenFor(model => item.Value)</td>
-                <td>@Html.CheckBoxFor(model => item.Selected)</td>
-                <td>@Html.DisplayFor(model => item.Text)</td>
-            </tr>
-        }
+    @foreach (SelectListItem item in Model.AllCategories)
+    {
+        <tr>
+            <td>@Html.CheckBox("AllCategories", item.Selected)</td>
+            <td>@Html.Label(item.Text)</td>
+        </tr>
+    }
     </table>
+        
 
-
+    <!--IMAGE-->
     <div class="editor-label">Image</div>
     <div class="editor-field">
     @if (Model.clip.ImageData == null)
@@ -39,8 +51,9 @@
             Upload new image:
             <input type="file" name="Image" />
         </div>
-    </div>  
+    </div>
 
-  <input type="submit" value="Save" />
-  @Html.ActionLink("Cancel and return to List", "ClipEditor")
+
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "ClipEditor")
 }

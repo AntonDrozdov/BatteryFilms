@@ -17,6 +17,8 @@ namespace batteryfilms.MVC.Models
 
         public EditClipModel()
         {
+            clip = new Clip();
+
             AllCategories = new List<SelectListItem>();
             VideoCategories = new List<SelectListItem>();
             FotoCategories = new List<SelectListItem>();

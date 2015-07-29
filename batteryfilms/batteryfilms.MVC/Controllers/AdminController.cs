@@ -31,54 +31,42 @@ namespace batteryfilms.MVC.Controllers
             clipToEdit.clip = repository.Clips.FirstOrDefault(clipitem => clipitem.Id == Id); ;
 
             //get all categories to choose
-            //repository.Categories.Distinct().ToList().ForEach(cat => clipToEdit.AllCategories.ToList().Add(new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() }));
-            //clipToEdit.AllCategories = from cat in repository.Categories.Distinct().ToList() select new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() };
             foreach (var cat in repository.Categories.Distinct().ToList())
             {
                  clipToEdit.AllCategories.Add( new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() });
             }
-            foreach (var clipcat in clipToEdit.clip.Categories) 
-            {
-                foreach (var cat in clipToEdit.AllCategories)
-                {
-                    if (cat.Value == clipcat.Id.ToString()) 
-                    { 
-                        cat.Selected = true; 
-                    }       
-                }
-            }
-            /*
+                //mark each category as checked if clip is belong to the category
             clipToEdit.AllCategories.ToList().ForEach(
                 item => item.Selected = clipToEdit.clip.Categories.ToList().Exists(clipcat => clipcat.Id.ToString() == item.Value)                
-            );*/
+            );
 
             return View(clipToEdit);
         }
         [HttpPost]
-        public ActionResult EditClip(Clip clip, HttpPostedFileBase image)
+        public ActionResult EditClip(EditClipModel clipToEdit, HttpPostedFileBase image)
         {
-            if (ModelState.IsValid)
-            {
-                
+            string k = ModelState["clip.Id"].Value.AttemptedValue;
+            
+
+            
+
+
                 if (image != null)
                 {
-                    clip.ImageMimeType = image.ContentType;
-                    clip.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(clip.ImageData, 0, image.ContentLength);
+                    clipToEdit.clip.ImageMimeType = image.ContentType;
+                    clipToEdit.clip.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(clipToEdit.clip.ImageData, 0, image.ContentLength);
                 }
                 
-                repository.SaveClip(clip);
-                TempData["message"] = string.Format("{0} has been saved", clip.Title);
+                //repository.SaveClip(clip);
+                TempData["message"] = string.Format("{0} has been saved", clipToEdit.clip.Title);
                 return RedirectToAction("ClipEditor");
-            }
-            else
-            {
-                return View(clip);
-            }
+            
+            
         }
         public ViewResult CreateClip()
         {
-            return View("EditClip", new Clip());
+            return View("EditClip", new EditClipModel());
         }
         [HttpPost]
         public ActionResult DeleteClip(int clipId)
