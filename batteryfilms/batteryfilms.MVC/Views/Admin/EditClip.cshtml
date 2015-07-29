@@ -11,7 +11,18 @@
     Html.RenderPartial("EditClip_EditForm", Model.clip);
     <div class="editor-label">Clip's Categories</div>
     
-    @Html.ListBoxFor(m=>m.AllCategories, Model.AllCategories);
+    @Html.ListBox("ClipCategories", Model.AllCategories);
+
+    <table>
+        @foreach (var item in Model.AllCategories)
+        {
+            <tr>
+                <td>@Html.HiddenFor(model => item.Value)</td>
+                <td>@Html.CheckBoxFor(model => item.Selected)</td>
+                <td>@Html.DisplayFor(model => item.Text)</td>
+            </tr>
+        }
+    </table>
 
 
     <div class="editor-label">Image</div>

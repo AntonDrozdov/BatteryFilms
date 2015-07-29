@@ -31,7 +31,12 @@ namespace batteryfilms.MVC.Controllers
             clipToEdit.clip = repository.Clips.FirstOrDefault(clipitem => clipitem.Id == Id); ;
 
             //get all categories to choose
-            clipToEdit.AllCategories = from cat in repository.Categories.Distinct().ToList() select new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() };
+            //repository.Categories.Distinct().ToList().ForEach(cat => clipToEdit.AllCategories.ToList().Add(new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() }));
+            //clipToEdit.AllCategories = from cat in repository.Categories.Distinct().ToList() select new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() };
+            foreach (var cat in repository.Categories.Distinct().ToList())
+            {
+                 clipToEdit.AllCategories.Add( new SelectListItem { Text = cat.Title, Selected = false, Value = cat.Id.ToString() });
+            }
             foreach (var clipcat in clipToEdit.clip.Categories) 
             {
                 foreach (var cat in clipToEdit.AllCategories)

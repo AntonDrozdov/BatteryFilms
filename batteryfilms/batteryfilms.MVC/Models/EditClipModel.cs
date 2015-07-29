@@ -11,9 +11,9 @@ namespace batteryfilms.MVC.Models
     public class EditClipModel
     {
         public Clip clip { get; set; }
-        public IEnumerable<SelectListItem> AllCategories { get; set; }
-        public IEnumerable<SelectListItem> VideoCategories { get; set; }
-        public IEnumerable<SelectListItem> FotoCategories { get; set; }
+        public List<SelectListItem> AllCategories { get; set; }
+        public List<SelectListItem> VideoCategories { get; set; }
+        public List<SelectListItem> FotoCategories { get; set; }
 
         public EditClipModel()
         {
