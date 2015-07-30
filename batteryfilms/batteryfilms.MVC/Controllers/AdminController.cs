@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using batteryfilms.Domain.Abstract;
 using batteryfilms.Domain.EFContexts.EFCF;
 using batteryfilms.MVC.Models;
+using batteryfilms.MVC.HtmlHelpers;
 
 namespace batteryfilms.MVC.Controllers
 {
@@ -45,24 +46,32 @@ namespace batteryfilms.MVC.Controllers
         [HttpPost]
         public ActionResult EditClip(EditClipModel clipToEdit, HttpPostedFileBase image)
         {
-            string k = ModelState["clip.Id"].Value.AttemptedValue;
+            //get commondata
+            clipToEdit.clip.Id = Convert.ToInt32(ModelState["clip.Id"].Value.AttemptedValue);
+            clipToEdit.clip.Title = ModelState["clip.Title"].Value.AttemptedValue;
+            clipToEdit.clip.Description = ModelState["clip.Description"].Value.AttemptedValue;
+            clipToEdit.clip.Url = ModelState["clip.Url"].Value.AttemptedValue;
+            
+            //get categories
+            clipToEdit.clip.Categories.Clear();
+            string[] selectedcats = ModelState["AllCategories"].Value.AttemptedValue.Split(new char[] { ',' });
+            List<Category> AllCategories = repository.Categories.Distinct().ToList();
+            for (int i=0; i<AllCategories.Count(); i++)
+            {
+                if (selectedcats[i]=="true") clipToEdit.clip.Categories.Add(AllCategories[i]); 
+            }
             
 
-            
+            if (image != null)
+            {
+                clipToEdit.clip.ImageMimeType = image.ContentType;
+                clipToEdit.clip.ImageData = new byte[image.ContentLength];
+                image.InputStream.Read(clipToEdit.clip.ImageData, 0, image.ContentLength);
+            }
 
-
-                if (image != null)
-                {
-                    clipToEdit.clip.ImageMimeType = image.ContentType;
-                    clipToEdit.clip.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(clipToEdit.clip.ImageData, 0, image.ContentLength);
-                }
-                
-                //repository.SaveClip(clip);
-                TempData["message"] = string.Format("{0} has been saved", clipToEdit.clip.Title);
-                return RedirectToAction("ClipEditor");
-            
-            
+            repository.SaveClip(clipToEdit.clip);
+            TempData["message"] = string.Format("{0} has been saved", clipToEdit.clip.Title);
+            return RedirectToAction("ClipEditor");
         }
         public ViewResult CreateClip()
         {

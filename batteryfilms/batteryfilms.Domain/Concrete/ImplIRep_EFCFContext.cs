@@ -30,6 +30,7 @@ namespace batteryfilms.Domain.Concrete
         }
         public void SaveClip(Clip clip)
         {
+            
             if (clip.Id == 0)
             {
                 contex.Clip.Add(clip);
@@ -45,7 +46,9 @@ namespace batteryfilms.Domain.Concrete
                     dbEntry.ImageData = clip.ImageData;
                     dbEntry.ImageMimeType = clip.ImageMimeType;
                 }
+                contex.Entry(dbEntry).State = System.Data.Entity.EntityState.Modified;
             }
+            
             contex.SaveChanges();
         }
         public Clip DeleteClip(int clipId)

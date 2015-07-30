@@ -8,6 +8,7 @@
 <h1>Edit: @Model.clip.Title</h1>
 @using (Html.BeginForm("EditClip", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.EditorForModel();
     <!--COMMON DATA-->
     <!--Html.RenderPartial("~/Views/Shared/EditClip/EditClip_EditForm.cshtml", Model.clip);-->
     <div class="editor-field">@Html.Editor("clip.Id", Model.clip.Id)</div>
@@ -25,15 +26,18 @@
     <!--CATEGORIES-->
     <!--Html.RenderPartial("~/Views/Shared/EditClip/EditClip_EditCategories.cshtml", Model.AllCategories);-->
     <div class="editor-label">Categories</div>
-    <table>
+    
+    @Html.ClipCatsChkbs(@Model.AllCategories, @Model.clip.Categories.ToList())
+    <!--<table>
     @foreach (SelectListItem item in Model.AllCategories)
     {
         <tr>
+            <td><input checked="checked" id="AllCategories" name="AllCategories" type="checkbox" value="true" /></td>
             <td>@Html.CheckBox("AllCategories", item.Selected)</td>
             <td>@Html.Label(item.Text)</td>
         </tr>
     }
-    </table>
+    </table>-->
         
 
     <!--IMAGE-->

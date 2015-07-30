@@ -27,7 +27,7 @@ namespace batteryfilms.MVC.HtmlHelpers
                 }
                 result.Append(tag.ToString());
             }
-            string a = result.ToString();
+    
             return MvcHtmlString.Create(result.ToString());
         }
 

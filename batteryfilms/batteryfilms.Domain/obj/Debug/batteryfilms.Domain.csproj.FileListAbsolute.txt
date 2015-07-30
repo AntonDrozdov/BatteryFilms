@@ -34,3 +34,15 @@ E:\DEVELOP\BatteryFilms\batteryfilms\batteryfilms.Domain\bin\Debug\ru\EntityFram
 E:\DEVELOP\BatteryFilms\batteryfilms\batteryfilms.Domain\obj\Debug\batteryfilms.Domain.csprojResolveAssemblyReference.cache
 E:\DEVELOP\BatteryFilms\batteryfilms\batteryfilms.Domain\obj\Debug\batteryfilms.Domain.dll
 E:\DEVELOP\BatteryFilms\batteryfilms\batteryfilms.Domain\obj\Debug\batteryfilms.Domain.pdb
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\batteryfilms.Domain.dll.config
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\batteryfilms.Domain.dll
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\batteryfilms.Domain.pdb
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\EntityFramework.dll
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\EntityFramework.SqlServer.dll
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\EntityFramework.xml
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\EntityFramework.SqlServer.xml
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\ru\EntityFramework.resources.dll
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\obj\Debug\batteryfilms.Domain.csprojResolveAssemblyReference.cache
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\obj\Debug\batteryfilms.Domain.dll
+E:\DEVELOP\bf\batteryfilms\batteryfilms.Domain\obj\Debug\batteryfilms.Domain.pdb
