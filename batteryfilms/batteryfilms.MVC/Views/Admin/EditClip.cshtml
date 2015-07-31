@@ -27,17 +27,24 @@
     <!--Html.RenderPartial("~/Views/Shared/EditClip/EditClip_EditCategories.cshtml", Model.AllCategories);-->
     <div class="editor-label">Categories</div>
     
-    @Html.ClipCatsChkbs(@Model.AllCategories, @Model.clip.Categories.ToList())
-    <!--<table>
-    @foreach (SelectListItem item in Model.AllCategories)
+     <table>
+    @for (int i = 0; i < Model.AllCategories.Count();i++ )
     {
         <tr>
-            <td><input checked="checked" id="AllCategories" name="AllCategories" type="checkbox" value="true" /></td>
-            <td>@Html.CheckBox("AllCategories", item.Selected)</td>
-            <td>@Html.Label(item.Text)</td>
-        </tr>
+            @if (Model.clip.Categories.FirstOrDefault(item=>item.Title==Model.AllCategories[i].Text)!=null)
+            {
+                <td><input checked="checked" id="AllCategories" name="AllCategories" type="checkbox" value="true" /></td>
+                <td>@Html.Label(Model.AllCategories[i].Text)</td>
+            }
+            else
+            {
+                <td><input id="AllCategories" name="AllCategories" type="checkbox" value="true" /></td>
+                <td>@Html.Label(Model.AllCategories[i].Text)</td>
+            }
+            
+         </tr>
     }
-    </table>-->
+    </table>
         
 
     <!--IMAGE-->
